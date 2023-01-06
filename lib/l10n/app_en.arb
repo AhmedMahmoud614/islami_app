@@ -1,0 +1,16 @@
+{
+"islami" : "Islami",
+"suraName": "SuraName",
+"quran": "Quran",
+"hadeth": "hadeth",
+"tasbeh": "Tasbeh",
+"hadethName": "HadethName",
+"radio": "Radio",
+"language" : "language",
+"themeing": "Themeing",
+"english": "English",
+"arabic": "Arabic",
+"settings": "Settings",
+"light": "Light",
+"dark": "Dark"
+}

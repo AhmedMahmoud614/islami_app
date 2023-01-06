@@ -1,0 +1,16 @@
+{
+"islami" : "اسلامى",
+"suraName": "اسم السوره",
+"quran": "القران",
+"hadeth": "الحديث",
+"tasbeh": "التسبيخ",
+"hadethName": "اسم الحديث",
+"radio": "الاذاعه",
+"language" : "اللغه",
+"themeing": "النمط",
+"english": "الانجليزيه",
+"arabic": "العربيه",
+"settings": "الاعدادات",
+"light": "مضئ",
+"dark": "غامق"
+}

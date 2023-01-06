@@ -1,0 +1,86 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:islami_final/Hadeth/item_Hadeth_Name.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+
+class  HadethTab extends StatefulWidget {
+  @override
+  State<HadethTab> createState() => _HadethTabState();
+}
+
+class _HadethTabState extends State<HadethTab> {
+List<Hadeth> allAhadeth = [];
+
+  @override
+  Widget build(BuildContext context) {
+    if(allAhadeth.isEmpty){
+      loadHadethFile();
+    }
+    loadHadethFile();
+    return Column(
+      children: [
+        Expanded(child: Image.asset('assets/images/hadeth_image.png'),
+          flex: 1,),
+        Divider(
+          color: Theme.of(context).primaryColor,
+          thickness: 2,
+        ),
+        Text(AppLocalizations.of(context)!.hadethName,
+          style: Theme.of(context).textTheme.subtitle1
+        ),
+        Divider(
+          color: Theme.of(context).primaryColor,
+          thickness: 2,
+        ),
+        Expanded(
+          flex: 3,
+          child: allAhadeth.length ==0?
+              Center(
+                child: CircularProgressIndicator(
+                  color: Theme.of(context).primaryColor,
+                ),
+              )
+          :
+          ListView.separated(
+            separatorBuilder: (context, index) {
+              return Divider(
+                color: Theme
+                    .of(context)
+                    .primaryColor,
+                thickness: 2,
+              );
+            },
+            itemBuilder: (context, index) {
+              return ItemHadethName(hadeth: allAhadeth[index]);
+            },
+            itemCount: 50,
+          ),)
+      ],
+    );
+  }
+
+  void loadHadethFile() async {
+    String ahadthContent = await rootBundle.loadString(
+        'assets/files/ahadeth.txt');
+    List<String> allHadethList = ahadthContent.split('#\r\n');
+    for (int i = 0; i < allHadethList.length; i++) {
+      List<String> eachHadeth = allHadethList[i].split('\n');
+      String title = eachHadeth[0];
+      eachHadeth.removeAt(0);
+      Hadeth hadeth = Hadeth(title: title, content: eachHadeth);
+      allAhadeth.add(hadeth);
+    }
+    setState(() {
+
+    });
+
+  }
+}
+class Hadeth{
+  String title;
+  List<String> content;
+  Hadeth({required this.title, required this.content});
+
+}
